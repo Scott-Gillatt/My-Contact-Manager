@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>My Contact Manager</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Merienda' type='text/css'>
+    <link rel="stylesheet" href="site.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <a class="navbar-brand">
+                <span class="logo"><i class="fa fa-users"></i> My Contact Manager</span>
+            </a>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button class="btn btn-primary" title="Search"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </nav>
+
+    <div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Friends</strong>
+                <div class="btn-group pull-right" role="group">
+                    <button id="addContactBtn" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addContactModal"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div id="contactList">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contactTemplate" class="panel panel-primary contact template">
+        <div class="panel-heading">
+            <strong class="contactFullName"></strong>
+            <div class="btn-group pull-right" role="group">
+                <button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button>
+                <button class="btn btn-default btn-xs"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+        <div class="panel-body">
+            <address>
+					<strong class="contactFirstName"></strong> <strong class="contactLastName"></strong><br>
+					<span class="contactAddress"></span><br>
+					<span class="contactCity"></span>, <span class="contactState"></span> <span class="contactZip"></span><br>
+					<abbr title="Phone">P:</abbr> <span class="contactPhoneNumber"></span>
+				</address>
+        </div>
+    </div>
+
+    <div id="addContactModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Add Contact</h3>
+                </div>
+                <div class="modal-body">
+                    <div id="addContactAlert" class="alert alert-danger alert-dismissible hidden" role="alert">
+                    </div>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="firstName" class="col-sm-4 control-label">First Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="addContactFirstName" placeholder="First Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="col-sm-4 control-label">Last Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="addContactLastName" placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber" class="col-sm-4 control-label">Phone Number</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="addContactPhoneNumber" placeholder="Phone Number">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address" class="col-sm-4 control-label">Address</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="addContactAddress" placeholder="Address">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="city" class="col-sm-4 control-label">City</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="addContactCity" placeholder="City">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="state" class="col-sm-4 control-label">State</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="addContactState" placeholder="State">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="zip" class="col-sm-4 control-label">Zip Code</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="addContactZip" placeholder="Zip Code">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="addContactOk" class="btn btn-success" type="button">Add</button>
+                    <button id="addContactCancel" class="btn btn-danger" type="button">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
