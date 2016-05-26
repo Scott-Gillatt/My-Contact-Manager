@@ -117,6 +117,64 @@
         })
         htmlList.appendChild(html);
     };
+    
+    ContactApp.prototype.addContactFromTemplate = function (contact) {
+
+        var self = this;
+
+        this.contacts.push(contact);
+
+        var htmlList = document.getElementById('contactList');
+
+        self.getContactTemplate(updateTemplate);
+
+        function updateTemplate(html) {
+
+            var newDiv = document.createElement('div');
+
+            html = html.replace(/\{ id \}/g, contact.id);
+            html = html.replace(/\{ fullName \}/g, contact.fullName());
+            html = html.replace(/\{ firstName \}/g, contact.firstName);
+            html = html.replace(/\{ lastName \}/g, contact.lastName);
+            html = html.replace(/\{ phoneNumber \}/g, contact.phoneNumber);
+            html = html.replace(/\{ address \}/g, contact.address);
+            html = html.replace(/\{ city \}/g, contact.city);
+            html = html.replace(/\{ state \}/g, contact.state);
+            html = html.replace(/\{ zip \}/g, contact.zip);
+
+            newDiv.setAttribute('id', 'contact-' + contact.id);
+            newDiv.classList.add('contact');
+            newDiv.innerHTML = html;
+
+            htmlList.appendChild(newDiv);
+
+            var deleteBtn = document.getElementById('remove-' + contact.id);
+
+            deleteBtn.setAttribute('contact-id', contact.id);
+
+            deleteBtn.addEventListener('click', function (event) {
+
+                var contactId = parseInt(event.currentTarget.getAttributeNode('contact-id').value);
+                var index = self.contacts.findIndex(function (item) {
+                    return item.id === contactId;
+                });
+
+                self.removeContact(index);
+            });
+        }
+    };
+
+    ContactApp.prototype.getContactTemplate = function (callback) {
+
+        var httpRequest = new XMLHttpRequest();
+
+        httpRequest.addEventListener('load', function () {
+            callback(httpRequest.responseText);
+        });
+
+        httpRequest.open('GET', '/contactTemplate.html');
+        httpRequest.send();
+    };
 
     ContactApp.prototype.removeContact = function (index) {
         if (index > -1) {
@@ -146,3 +204,8 @@
     var app = new ContactApp();
 
 })();
+
+// Asynchronous  (Non Blocking)
+// JavaScript
+// And
+// Xml
